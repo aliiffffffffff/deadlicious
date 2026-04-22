@@ -6,7 +6,7 @@ const SPREADSHEET_ID = '1SjR_b-jqh2INRyrkWIvOjjAjRtp2_64LkAuc8exx3Jk';
 // Nama repo GitHub kamu — contoh: 'title-card-archive'
 // Ini dipakai untuk path gambar di GitHub Pages (username.github.io/REPO_NAME)
 // Kalau kamu pakai custom domain atau user site, kosongkan: ''
-const REPO_NAME = 'title-card-archive';
+const REPO_NAME = 'deadlicious';
 
 // Decade sheets — must match exact sheet tab names in your Google Sheets
 const DECADES = [
