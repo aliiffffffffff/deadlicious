@@ -56,8 +56,25 @@ async function fetchSheetData(sheetName) {
 
 // Simple CSV parser (handles quoted fields)
 function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  return lines.slice(1).map(line => { // skip header row
+  const rows = [];
+  let current = '';
+  let inQuote = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === '"') {
+      inQuote = !inQuote;
+      current += ch;
+    } else if (ch === '\n' && !inQuote) {
+      rows.push(current);
+      current = '';
+    } else {
+      current += ch;
+    }
+  }
+  if (current.trim()) rows.push(current);
+
+  return rows.slice(1).map(line => {
     const cols = splitCSVLine(line);
     return cols;
   }).filter(row => row[COL.title]?.trim());
