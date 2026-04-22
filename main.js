@@ -175,6 +175,7 @@ function renderGrid() {
       : null;
 
     const hasImage = !!film.filename;
+    const isVideo = /\.(mp4|webm|ogv)$/i.test(film.filename);
 
     return `
       <div class="film-card ${!hasImage ? 'no-image' : ''}"
@@ -183,10 +184,14 @@ function renderGrid() {
            tabindex="0"
            aria-label="${film.title} (${film.year})">
         ${hasImage
-          ? `<img class="film-card-img" src="${imgPath}" alt="${film.title}" loading="lazy" onerror="this.parentElement.classList.add('img-error'); this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-             <div class="film-card-placeholder" style="display:none; position:absolute; inset:0;">no image</div>`
-          : `<div class="film-card-placeholder">no image</div>`
-        }
+  ? isVideo
+    ? `<video class="film-card-img" src="${imgPath}" muted loop playsinline preload="none"
+         onerror="this.parentElement.classList.add('img-error'); this.style.display='none'; this.nextElementSibling.style.display='flex';"></video>
+       <div class="film-card-placeholder" style="display:none; position:absolute; inset:0;">no image</div>`
+    : `<img class="film-card-img" src="${imgPath}" alt="${film.title}" loading="lazy" onerror="this.parentElement.classList.add('img-error'); this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+       <div class="film-card-placeholder" style="display:none; position:absolute; inset:0;">no image</div>`
+  : `<div class="film-card-placeholder">no image</div>`
+}
         <div class="film-card-overlay">
           <div class="film-card-title">${film.title}</div>
           <div class="film-card-meta">${film.year}${film.director ? ' · ' + film.director : ''}</div>
@@ -201,6 +206,11 @@ function renderGrid() {
     card.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') openLightbox(parseInt(card.dataset.index));
     });
+    const video = card.querySelector('video');
+  if (video) {
+    card.addEventListener('mouseenter', () => video.play());
+    card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+  }
   });
 }
 
@@ -258,13 +268,12 @@ function openLightbox(filmIndex) {
   document.getElementById('lightbox-year').textContent = film.year;
   document.getElementById('lightbox-director').textContent = film.director;
 
-  if (imgPath) {
-    img.src = imgPath;
-    img.alt = film.title;
-    img.style.display = 'block';
-  } else {
-    img.style.display = 'none';
-  }
+  const isVideo = /\.(mp4|webm|ogv)$/i.test(film.filename || '');
+const lbWrap = document.querySelector('.lightbox-image-wrap');
+
+lbWrap.innerHTML = isVideo
+  ? `<video src="${imgPath}" controls autoplay loop muted style="max-width:100%; max-height:65vh;"></video>`
+  : `<img id="lightbox-img" src="${imgPath}" alt="${film.title}" style="max-width:100%; max-height:65vh; object-fit:contain;" />`;
 
   lb.classList.add('active');
   overlay.classList.add('active');
