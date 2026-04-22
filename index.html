@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>deadlicious' title card archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="grain"></div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <span class="header-label">archive</span>
+        <span class="header-label" id="total-count">— films</span>
+      </div>
+      <h1 class="site-title">deadlicious'<br><em>title card</em><br>archive</h1>
+      <div class="header-meta">
+        <a href="https://letterboxd.com/deadlicious" target="_blank" class="meta-link">letterboxd</a>
+        <span class="meta-sep">/</span>
+        <a href="https://twitter.com/penangkapan" target="_blank" class="meta-link">twitter</a>
+      </div>
+      <p class="header-desc">A personal collection of film title cards — one frame, one film.</p>
+    </div>
+  </header>
+
+  <!-- DECADE NAV -->
+  <nav class="decade-nav" id="decade-nav">
+    <div class="decade-nav-inner">
+      <button class="decade-btn active" data-decade="all">All</button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- LOADING STATE -->
+    <div class="loading-state" id="loading-state">
+      <div class="loading-dots">
+        <span></span><span></span><span></span>
+      </div>
+      <p>Loading archive...</p>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div class="search-wrap" id="search-wrap" style="display:none">
+      <input type="text" id="search-input" class="search-input" placeholder="Search title, director..." />
+    </div>
+
+    <!-- DECADE HEADER -->
+    <div class="decade-header" id="decade-header" style="display:none">
+      <h2 class="decade-title" id="decade-title">All Films</h2>
+      <span class="decade-count" id="decade-count"></span>
+    </div>
+
+    <!-- GRID -->
+    <div class="films-grid" id="films-grid"></div>
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="empty-state" style="display:none">
+      <p>No films found.</p>
+    </div>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <div class="lightbox-inner">
+      <div class="lightbox-image-wrap">
+        <img src="" alt="" id="lightbox-img" />
+      </div>
+      <div class="lightbox-info">
+        <span class="lightbox-decade" id="lightbox-decade"></span>
+        <h3 class="lightbox-title" id="lightbox-title"></h3>
+        <div class="lightbox-meta">
+          <span id="lightbox-year"></span>
+          <span class="lightbox-sep">—</span>
+          <span id="lightbox-director"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="lightbox-overlay" id="lightbox-overlay"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
