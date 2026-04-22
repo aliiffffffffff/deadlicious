@@ -210,6 +210,8 @@ function renderGrid() {
 function buildDecadeNav() {
   const nav = document.getElementById('decade-nav').querySelector('.decade-nav-inner');
 
+  nav.querySelector('[data-decade="all"]').addEventListener('click', () => switchDecade('all'));
+  
   // Get decades that actually have films
   const populated = DECADES.filter(d => allFilms.some(f => f.decade === d));
 
