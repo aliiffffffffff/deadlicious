@@ -301,6 +301,8 @@ async function init() {
     decadeHeader.style.display = 'flex';
     renderGrid();
 
+    fetchLatestUpdate();
+
     // Search
     document.getElementById('search-input').addEventListener('input', e => {
       searchQuery = e.target.value;
