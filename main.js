@@ -335,7 +335,7 @@ async function fetchLatestUpdate() {
   const formatted = date.toLocaleDateString('en-GB', {
     day: 'numeric', month: 'long', year: 'numeric'
   });
-  document.getElementById('latest-update').textContent = `last updated ${formatted}`;
+  document.getElementById('latest-update').textContent = `last updated — ${formatted}`;
 }
 
 document.addEventListener('DOMContentLoaded', init);
