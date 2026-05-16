@@ -329,7 +329,7 @@ async function init() {
 }
 
 async function fetchLatestUpdate() {
-  const res = await fetch('https://api.github.com/repos/aliiffffffffffffff/deadlicious/commits?per_page=1');
+  const res = await fetch('https://api.github.com/repos/aliiffffffffff/deadlicious/commits?per_page=1');
   const data = await res.json();
   const date = new Date(data[0].commit.author.date);
   const formatted = date.toLocaleDateString('en-GB', {
