@@ -29,12 +29,25 @@ html {
 
 body {
   background: var(--bg);
+  background-image: url('bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--text);
   font-family: 'DM Mono', monospace;
   font-weight: 300;
   min-height: 100vh;
   overflow-x: hidden;
   cursor: default;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* ===========================
