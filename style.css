@@ -85,6 +85,7 @@ body::before {
 }
 
 .site-header::after {
+  display: none;
   content: 'TITLE CARD';
   position: absolute;
   right: -20px;
