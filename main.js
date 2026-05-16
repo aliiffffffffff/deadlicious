@@ -1,11 +1,5 @@
-// ===========================
-// CONFIG — EDIT THIS SECTION
-// ===========================
-const SPREADSHEET_ID = '1SjR_b-jqh2INRyrkWIvOjjAjRtp2_64LkAuc8exx3Jk';
 
-// Nama repo GitHub kamu — contoh: 'title-card-archive'
-// Ini dipakai untuk path gambar di GitHub Pages (username.github.io/REPO_NAME)
-// Kalau kamu pakai custom domain atau user site, kosongkan: ''
+const SPREADSHEET_ID = '1SjR_b-jqh2INRyrkWIvOjjAjRtp2_64LkAuc8exx3Jk';
 const REPO_NAME = 'deadlicious';
 
 // Decade sheets — must match exact sheet tab names in your Google Sheets
@@ -330,6 +324,16 @@ async function init() {
     `;
     console.error(err);
   }
+}
+
+async function fetchLatestUpdate() {
+  const res = await fetch('https://api.github.com/repos/aliiffffffffffffff/deadlicious/commits?per_page=1');
+  const data = await res.json();
+  const date = new Date(data[0].commit.author.date);
+  const formatted = date.toLocaleDateString('en-GB', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
+  document.getElementById('latest-update').textContent = `last updated ${formatted}`;
 }
 
 document.addEventListener('DOMContentLoaded', init);
