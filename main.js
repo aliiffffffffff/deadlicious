@@ -333,3 +333,8 @@ async function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  document.body.style.backgroundPositionY = `calc(50% + ${scrollY * 0.4}px)`;
+});
